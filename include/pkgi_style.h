@@ -55,15 +55,15 @@
 #define PKGI_FONT_HEIGHT 16
 #define PKGI_FONT_SHADOW 2
 
-#define PKGI_MAIN_COLUMN_PADDING    15
-#define PKGI_MAIN_HLINE_EXTRA       0
+#define PKGI_MAIN_COLUMN_PADDING    10
+#define PKGI_MAIN_HLINE_EXTRA       5
 #define PKGI_MAIN_ROW_PADDING       2
 #define PKGI_MAIN_HLINE_HEIGHT      2
 #define PKGI_MAIN_TEXT_PADDING      5
 #define PKGI_MAIN_SCROLL_WIDTH      2
 #define PKGI_MAIN_SCROLL_PADDING    2
 #define PKGI_MAIN_SCROLL_MIN_HEIGHT 50
-#define PKGI_MAIN_HMARGIN           12
+#define PKGI_MAIN_HMARGIN           20
 #define PKGI_MAIN_VMARGIN           20
 
 #define PKGI_DIALOG_TEXT_Z  800
@@ -79,7 +79,7 @@
 
 #define PKGI_MENU_Z            900
 #define PKGI_MENU_TEXT_Z       800
-#define PKGI_MENU_WIDTH        240
+#define PKGI_MENU_WIDTH        200
 #define PKGI_MENU_HEIGHT       480
-#define PKGI_MENU_LEFT_PADDING 20
+#define PKGI_MENU_LEFT_PADDING 40
 #define PKGI_MENU_TOP_PADDING  40
