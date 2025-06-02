@@ -27,7 +27,13 @@ jobs:
         echo "sha_name=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
         echo "PS3DEV=${GITHUB_WORKSPACE}/ps3dev" >> $GITHUB_ENV
         echo "PSL1GHT=${GITHUB_WORKSPACE}/ps3dev" >> $GITHUB_ENV
-
+        
+    - name: Install legacy dependencies
+      run: |
+        wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
+        sudo dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb
+        sudo apt-get install python2.7
+        
       # using pre-compiled sdk
     - name: Download PSL1GHT Toolchain
       run: |
@@ -38,13 +44,6 @@ jobs:
       working-directory: ya2d_ps3/libya2d
       run: |
         make install
-
-    - name: Install legacy dependencies
-      run: |
-        wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
-        sudo dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb
-        wget http://archive.ubuntu.com/ubuntu/pool/universe/p/python2.7/python2.7_2.7.18-13ubuntu1_amd64.deb
-        sudo dpkg -i python2.7_2.7.18-13ubuntu1_amd64.deb
 
     - name: Install mini18n
       working-directory: mini18n
