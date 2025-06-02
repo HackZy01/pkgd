@@ -43,7 +43,7 @@ jobs:
       run: |
         wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
         sudo dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb
-        wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
+        wget https://ubuntu.pkgs.org/22.04/ubuntu-universe-amd64/python2.7_2.7.18-13ubuntu1_amd64.deb
         sudo dpkg -i python2.7_2.7.18-13ubuntu1_amd64.deb
 
     - name: Install mini18n
