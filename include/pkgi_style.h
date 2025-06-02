@@ -51,19 +51,19 @@
 #define PKGI_ANIMATION_SPEED 4000 // px/second
 
 #define PKGI_FONT_Z      1000
-#define PKGI_FONT_WIDTH  16
-#define PKGI_FONT_HEIGHT 12
+#define PKGI_FONT_WIDTH  10
+#define PKGI_FONT_HEIGHT 16
 #define PKGI_FONT_SHADOW 2
 
 #define PKGI_MAIN_COLUMN_PADDING    15
 #define PKGI_MAIN_HLINE_EXTRA       0
 #define PKGI_MAIN_ROW_PADDING       2
-#define PKGI_MAIN_HLINE_HEIGHT      1
+#define PKGI_MAIN_HLINE_HEIGHT      2
 #define PKGI_MAIN_TEXT_PADDING      5
 #define PKGI_MAIN_SCROLL_WIDTH      2
 #define PKGI_MAIN_SCROLL_PADDING    2
 #define PKGI_MAIN_SCROLL_MIN_HEIGHT 50
-#define PKGI_MAIN_HMARGIN           22
+#define PKGI_MAIN_HMARGIN           25
 #define PKGI_MAIN_VMARGIN           20
 
 #define PKGI_DIALOG_TEXT_Z  800
