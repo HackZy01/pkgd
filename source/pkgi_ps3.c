@@ -1100,11 +1100,7 @@ int pkgi_text_width_ttf(const char* text)
 
 void pkgi_draw_text(int x, int y, uint32_t color, const char* text)
 {
-    SetFontColor(RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0);
-    DrawString((float)x+PKGI_FONT_SHADOW, (float)y+PKGI_FONT_SHADOW, (char *)text);
-
-    SetFontColor(RGBA_COLOR(color, 200), 0);
-    DrawString((float)x, (float)y, (char *)text);
+    pkgi_draw_text_ttf(x, y, PKGI_FONT_Z, color, text);
 }
 
 
