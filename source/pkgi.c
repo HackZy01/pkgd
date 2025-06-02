@@ -700,11 +700,6 @@ static void pkgi_load_language(const char* lang)
     mini18n_set_locale(path);
 }
 
-static int pkgi_security_check()
-{
-    return 0;
-}
-
 int main(int argc, const char* argv[])
 {
     pkgi_start();
