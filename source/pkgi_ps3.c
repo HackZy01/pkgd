@@ -1047,34 +1047,43 @@ void pkgi_draw_rect(int x, int y, int w, int h, uint32_t color)
 
 void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
 {
-    char converted[256];
-    int pos = 0;
-    
-    // Convert PlayStation symbols to normal characters that exist in your TTF font
-    while (*text && pos < 255) {
+    int i=x, j=y;
+    SetFontColor(RGBA_COLOR(color, 255), 0);
+    while (*text) {
         switch(*text) {
-            case '\xfa': // circle
-                converted[pos++] = 'O'; // or whatever character you want to represent circle
-                break;
-            case '\xfb': // cross
-                converted[pos++] = 'X'; // or whatever character you want to represent cross
-                break;
-            case '\xfc': // triangle
-                converted[pos++] = '^'; // or whatever character you want to represent triangle
-                break;
-            case '\xfd': // square
-                converted[pos++] = '□'; // or whatever character you want to represent square
-                break;
-            default:
-                converted[pos++] = *text;
-                break;
+            case '\n':
+                i = x;
+                j += PKGI_FONT_HEIGHT;
+                text++;
+                continue;
+            case '\xfa':
+                pkgi_draw_texture_z(tex_buttons.circle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfb':
+                pkgi_draw_texture_z(tex_buttons.cross, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfc':
+                pkgi_draw_texture_z(tex_buttons.triangle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfd':
+                pkgi_draw_texture_z(tex_buttons.square, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
         }
-        text++;
-    }
-    converted[pos] = '\0';
-    
-    pkgi_draw_text_ttf(x, y, z, color, converted);
+        
+        DrawChar(i, j, z, (u8) *text);
+        i += PKGI_FONT_WIDTH;
+        text++; 
+    }    
 }
+
 
 void pkgi_draw_text_ttf(int x, int y, int z, uint32_t color, const char* text)
 {
@@ -1085,7 +1094,7 @@ void pkgi_draw_text_ttf(int x, int y, int z, uint32_t color, const char* text)
 
 int pkgi_text_width_ttf(const char* text)
 {
-    return (display_ttf_string(0, 0, text, 0, 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2));
+    return pkgi_text_width_ttf(text);
 }
 
 
