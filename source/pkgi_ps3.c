@@ -1045,6 +1045,15 @@ void pkgi_draw_rect(int x, int y, int w, int h, uint32_t color)
 	ya2d_drawRect(x, y, w, h, RGBA_COLOR(color, 255));
 }
 
+void pkgi_draw_text_z_ttf(int x, int y, int z, uint32_t color, const char* text)
+{
+    Z_ttf = z;
+    // Draw shadow
+    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, text, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+    // Draw text
+    display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+}
+
 void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
 {
     int i=x, j=y;
@@ -1078,9 +1087,7 @@ void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
                 continue;
         }
         
-        DrawChar(i, j, z, (u8) *text);
-        i += PKGI_FONT_WIDTH;
-        text++; 
+    pkgi_draw_text_z_ttf(x, y, z, color, converted);
     }    
 }
 
@@ -1094,7 +1101,7 @@ void pkgi_draw_text_ttf(int x, int y, int z, uint32_t color, const char* text)
 
 int pkgi_text_width_ttf(const char* text)
 {
-    return pkgi_text_width_ttf(text);
+    return (display_ttf_string(0, 0, text, 0, 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2));
 }
 
 
