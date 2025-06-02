@@ -184,7 +184,7 @@ msgstr "lista jest pusta... sprawdz serwer DB"
 
 #: pkgi_db.c:390
 msgid "ERROR: pkgi.txt file(s) missing or bad config.txt file"
-msgstr "BŁĄD: brak pliku(ow) pkgi.txt lub zly plik config.txt"
+msgstr "BŁĄD: brak pliku(ów) pkgi.txt lub zly plik config.txt"
 
 #: pkgi_dialog.c:80
 msgid "Content"
