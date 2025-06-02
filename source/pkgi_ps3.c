@@ -610,10 +610,6 @@ void load_ttf_fonts()
 	TTFLoadFont(1, "/dev_flash/data/font/SCE-PS3-DH-R-CGB.TTF", NULL, 0);
 	TTFLoadFont(2, "/dev_flash/data/font/SCE-PS3-SR-R-JPN.TTF", NULL, 0);
 	TTFLoadFont(3, "/dev_flash/data/font/SCE-PS3-YG-R-KOR.TTF", NULL, 0);
-	
-    // You might want to experiment with these sizes
-    TTF_UX = 12;  // Match PKGI_FONT_WIDTH
-    TTF_UY = 16;  // Match PKGI_FONT_HEIGHT
     
 	ya2d_texturePointer = (u32*) init_ttf_table((u16*) ya2d_texturePointer);
 }
