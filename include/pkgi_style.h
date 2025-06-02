@@ -77,7 +77,7 @@
 #define PKGI_DIALOG_PROCESS_BAR_PADDING 10
 #define PKGI_DIALOG_PROCESS_BAR_CHUNK   200
 
-#popup menu
+//popup menu
 #define PKGI_MENU_Z            900
 #define PKGI_MENU_TEXT_Z       800
 #define PKGI_MENU_WIDTH        200
