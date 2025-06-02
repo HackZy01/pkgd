@@ -264,7 +264,7 @@ static void pkgi_do_main(pkgi_input* input)
         if (input->active & pkgi_cancel_button())
         {
             input->pressed &= ~pkgi_cancel_button();
-            pkgi_dialog_ok_cancel("\xE2\x98\x85  PKGi PS3 v" PKGI_VERSION "  \xE2\x98\x85", _("Exit to XMB?"), &cb_dialog_exit);
+            pkgi_dialog_ok_cancel("\xE2\x98\x85  PKGd v" PKGI_VERSION "  \xE2\x98\x85", _("Exit to XMB?"), &cb_dialog_exit);
         }
 
         if (input->active & PKGI_BUTTON_SELECT)
@@ -533,10 +533,10 @@ static void pkgi_do_refresh(void)
 static void pkgi_do_head(void)
 {
     char title[256];
-    pkgi_snprintf(title, sizeof(title), "PKGi PS3 v%s - %s", PKGI_VERSION, content_type_str(config.content));
+    pkgi_snprintf(title, sizeof(title), "PKGd %s - %s", PKGI_VERSION, content_type_str(config.content));
     pkgi_draw_text(PKGI_MAIN_HMARGIN, PKGI_MAIN_VMARGIN, PKGI_COLOR_TEXT_HEAD, title);
 
-    pkgi_draw_fill_rect(0, font_height + PKGI_MAIN_VMARGIN, VITA_WIDTH, PKGI_MAIN_HLINE_HEIGHT, PKGI_COLOR_HLINE);
+    pkgi_draw_fill_rect(0, font_height+5 + PKGI_MAIN_VMARGIN, VITA_WIDTH, PKGI_MAIN_HLINE_HEIGHT, PKGI_COLOR_HLINE);
 
     char battery[256];
     pkgi_snprintf(battery, sizeof(battery), "CPU: %u""\xf8""C RSX: %u""\xf8""C", pkgi_get_temperature(0), pkgi_get_temperature(1));

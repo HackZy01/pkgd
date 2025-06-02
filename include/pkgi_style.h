@@ -6,7 +6,7 @@
 #define PKGI_COLOR(R, G, B)		(((R)<<16) | ((G)<<8) | (B))
 #define RGBA_COLOR(C, ALPHA)	((C<<8) | ALPHA)
 
-#define PKGI_UTF8_DEGREE "\xc2\xb0"  // ° DEGREE SIGN (U+00B0)
+#define PKGI_UTF8_DEGREE "\xf8"  // ° DEGREE SIGN (U+00B0)
 
 #define PKGI_UTF8_O "\xe2\x97\x8b" // ○ (U+25CB)
 #define PKGI_UTF8_X "\xc3\x97" // × (U+00D7)
