@@ -6,6 +6,8 @@
 #define PKGI_COLOR(R, G, B)		(((R)<<16) | ((G)<<8) | (B))
 #define RGBA_COLOR(C, ALPHA)	((C<<8) | ALPHA)
 
+#define PKGI_UTF8_DEGREE "\xc2\xb0"  // ° DEGREE SIGN (U+00B0)
+
 #define PKGI_UTF8_O "\xe2\x97\x8b" // ○ (U+25CB)
 #define PKGI_UTF8_X "\xc2\xbb" // » (U+00BB)
 #define PKGI_UTF8_T "\xe2\x96\xb3" // △ (U+25B3)
@@ -62,11 +64,11 @@
 #define PKGI_MAIN_SCROLL_PADDING    2
 #define PKGI_MAIN_SCROLL_MIN_HEIGHT 50
 #define PKGI_MAIN_HMARGIN           20
-#define PKGI_MAIN_VMARGIN           30
+#define PKGI_MAIN_VMARGIN           20
 
 #define PKGI_DIALOG_TEXT_Z  800
 #define PKGI_DIALOG_HMARGIN 100
-#define PKGI_DIALOG_VMARGIN 150
+#define PKGI_DIALOG_VMARGIN 200
 #define PKGI_DIALOG_PADDING 30
 #define PKGI_DIALOG_WIDTH (VITA_WIDTH - 2*PKGI_DIALOG_HMARGIN)
 #define PKGI_DIALOG_HEIGHT (VITA_HEIGHT - 2*PKGI_DIALOG_VMARGIN)
