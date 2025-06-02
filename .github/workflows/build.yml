@@ -1,75 +1,64 @@
-name: Build package
+name: Build PKGd .pkg
 
-on: [push, pull_request, workflow_dispatch]
+on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
-  setup_dependencies:
-    runs-on: ubuntu-22.04
-    outputs:
-      sha_name: ${{ steps.set_env.outputs.sha_name }}
-    steps:
-      - name: Set environment variables
-        id: set_env
-        run: |
-          echo "sha_name=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
-          echo "PS3DEV=${GITHUB_WORKSPACE}/ps3dev" >> $GITHUB_ENV
-          echo "PSL1GHT=${GITHUB_WORKSPACE}/ps3dev" >> $GITHUB_ENV
-
-      - name: Install legacy dependencies
-        run: |
-          wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
-          sudo dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb
-          sudo apt-get install python2.7
-
-      - name: Download PSL1GHT Toolchain
-        run: |
-          curl -sL https://github.com/bucanero/ps3toolchain/releases/download/ubuntu-latest-fad3b5fb/ps3dev-ubuntu-latest-2020-08-31.tar.gz | tar xvz -C ./
-          curl -sL https://github.com/ps3dev/PSL1GHT/raw/master/ppu/include/sysutil/sysutil.h -o ps3dev/ppu/include/sysutil/sysutil.h
-
-  build_dependencies:
-    needs: setup_dependencies
+  build_pkg:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Checkout ya2d
-        uses: actions/checkout@v4
-        with:
-          repository: bucanero/ya2d_ps3
-          path: ya2d_ps3
+    - name: Checkout
+      uses: actions/checkout@v4
 
-      - name: Checkout mini18n
-        uses: actions/checkout@v4
-        with:
-          repository: bucanero/mini18n
-          path: mini18n
+    - name: Checkout ya2d
+      uses: actions/checkout@v4
+      with:
+        repository: bucanero/ya2d_ps3
+        path: ya2d_ps3
 
-      - name: Install ya2d
-        working-directory: ya2d_ps3/libya2d
-        run: |
-          make install
+    - name: Checkout mini18n
+      uses: actions/checkout@v4
+      with:
+        repository: bucanero/mini18n
+        path: mini18n
 
-      - name: Install mini18n
-        working-directory: mini18n
-        run: |
-          make install
+    - name: Set env vars
+      run: |
+        echo "sha_name=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
+        echo "PS3DEV=${GITHUB_WORKSPACE}/ps3dev" >> $GITHUB_ENV
+        echo "PSL1GHT=${GITHUB_WORKSPACE}/ps3dev" >> $GITHUB_ENV
+        
+    - name: Install legacy dependencies
+      run: |
+        wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
+        sudo dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb
+        sudo apt-get install python2.7
+        
+      # using pre-compiled sdk
+    - name: Download PSL1GHT Toolchain
+      run: |
+        curl -sL https://github.com/bucanero/ps3toolchain/releases/download/ubuntu-latest-fad3b5fb/ps3dev-ubuntu-latest-2020-08-31.tar.gz | tar xvz -C ./
+        curl -sL https://github.com/ps3dev/PSL1GHT/raw/master/ppu/include/sysutil/sysutil.h -o ps3dev/ppu/include/sysutil/sysutil.h
 
-  build_package:
-    needs: [setup_dependencies, build_dependencies]
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Install ya2d
+      working-directory: ya2d_ps3/libya2d
+      run: |
+        make install
 
-      - name: Build PKGi App Package
-        run: |
-          make pkg
+    - name: Install mini18n
+      working-directory: mini18n
+      run: |
+        make install
 
-      - name: Push package artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: pkgd-build_${{ env.sha_name }}
-          path: pkgd.pkg
-          if-no-files-found: error
-          retention-days: 7
+    - name: Build PKGi App Package
+      run: |
+        make pkg
+
+    - name: Push package artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: pkgd-build_${{ env.sha_name }}
+        path: pkgd.pkg
+        if-no-files-found: error
+        # don't keep artifacts for too long
+        retention-days: 7
