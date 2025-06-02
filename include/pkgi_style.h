@@ -6,28 +6,26 @@
 #define PKGI_COLOR(R, G, B)		(((R)<<16) | ((G)<<8) | (B))
 #define RGBA_COLOR(C, ALPHA)	((C<<8) | ALPHA)
 
-// PlayStation Buttons
-#define PKGI_UTF8_O "\xe2\x97\x8b" // ○ WHITE CIRCLE (U+25CB)
-#define PKGI_UTF8_X "\xc3\x97" // × MULTIPLICATION SIGN (U+00D7)
-#define PKGI_UTF8_T "\xe2\x96\xb3" // △ WHITE UP-POINTING TRIANGLE (U+25B3)
-#define PKGI_UTF8_S "\xe2\x96\xa1" // □ WHITE SQUARE (U+25A1)
+#define PKGI_UTF8_O "\xe2\x97\x8b" // ○ (U+25CB)
+#define PKGI_UTF8_X "\xc2\xbb" // » (U+00BB)
+#define PKGI_UTF8_T "\xe2\x96\xb3" // △ (U+25B3)
+#define PKGI_UTF8_S "\xe2\x96\xa1" // □ (U+25A1)
 
-// Status Icons
-#define PKGI_UTF8_INSTALLED "\xe2\x97\x8f" // ● BLACK CIRCLE (U+25CF)
-#define PKGI_UTF8_PARTIAL   "\xe2\x97\x8b" // ○ WHITE CIRCLE (U+25CB)
+#define PKGI_UTF8_INSTALLED "\xe2\x97\x8f" // ● (U+25CF)
+#define PKGI_UTF8_PARTIAL   "\xe2\x97\x8b" // ○ (U+25CB)
 
 #define PKGI_UTF8_B  "B"
 #define PKGI_UTF8_KB "Kb"
 #define PKGI_UTF8_MB "Mb"
 #define PKGI_UTF8_GB "Gb"
 
-#define PKGI_UTF8_CLEAR "\xc3\x97" // × MULTIPLICATION SIGN (U+00D7)
+#define PKGI_UTF8_CLEAR "\xc3\x97" // × (U+00D7)
 
-#define PKGI_UTF8_SORT_ASC  "\xe2\x96\xb2" // ▲ BLACK UP-POINTING TRIANGLE (U+25B2)
-#define PKGI_UTF8_SORT_DESC "\xe2\x96\xbc" // ▼ BLACK DOWN-POINTING TRIANGLE (U+25BC)
+#define PKGI_UTF8_SORT_ASC  "\xe2\x96\xb2" // ▲ (U+25B2)
+#define PKGI_UTF8_SORT_DESC "\xe2\x96\xbc" // ▼ (U+25BC)
 
-#define PKGI_UTF8_CHECK_ON  "\xe2\x97\x8f" // ● BLACK CIRCLE (U+25CF)
-#define PKGI_UTF8_CHECK_OFF "\xe2\x97\x8b" // ○ WHITE CIRCLE (U+25CB)
+#define PKGI_UTF8_CHECK_ON  "\xe2\x97\x8f" // ● (U+25CF)
+#define PKGI_UTF8_CHECK_OFF "\xe2\x97\x8b" // ○ (U+25CB)
 
 #define PKGI_COLOR_DIALOG_BACKGROUND    PKGI_COLOR(48, 48, 48)
 #define PKGI_COLOR_MENU_BORDER          PKGI_COLOR(80, 80, 255)
