@@ -603,8 +603,8 @@ void load_ttf_fonts()
 	LOG("loading TTF fonts");
 	
 	TTFUnloadFont();
-	TTFLoadFont(0, "/dev_flash/data/font/SCE-PS3-SR-R-LATIN2.TTF", NULL, 0);
-	TTFLoadFont(1, "/dev_flash/data/font/SCE-PS3-DH-R-CGB.TTF", NULL, 0);
+	TTFLoadFont(0, "/dev_hdd0/game/NP00PKGI3/USRDIR/RobotoMono-Regular.ttf", NULL, 0);
+	TTFLoadFont(1, "/dev_flash/data/font/SCE-PS3-DH-R-CGB.TTF", NULL, 0); 
 	TTFLoadFont(2, "/dev_flash/data/font/SCE-PS3-SR-R-JPN.TTF", NULL, 0);
 	TTFLoadFont(3, "/dev_flash/data/font/SCE-PS3-YG-R-KOR.TTF", NULL, 0);
 	
