@@ -1087,7 +1087,7 @@ void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
                 continue;
         }
         
-    pkgi_draw_text_z_ttf(x, y, z, color, converted);
+    pkgi_draw_text_z_ttf(x, y, z, color);
     }    
 }
 
