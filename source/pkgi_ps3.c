@@ -43,9 +43,6 @@
 
 #define PKGI_USER_AGENT "Mozilla/5.0 (PLAYSTATION 3; 1.00)"
 
-#define PKGI_FONT_Z 1.0f  // Default Z value for text rendering
-
-
 
 struct pkgi_http
 {
@@ -610,7 +607,7 @@ void load_ttf_fonts()
 	TTFLoadFont(1, "/dev_flash/data/font/SCE-PS3-DH-R-CGB.TTF", NULL, 0);
 	TTFLoadFont(2, "/dev_flash/data/font/SCE-PS3-SR-R-JPN.TTF", NULL, 0);
 	TTFLoadFont(3, "/dev_flash/data/font/SCE-PS3-YG-R-KOR.TTF", NULL, 0);
-    
+	
 	ya2d_texturePointer = (u32*) init_ttf_table((u16*) ya2d_texturePointer);
 }
 
@@ -1050,42 +1047,49 @@ void pkgi_draw_rect(int x, int y, int w, int h, uint32_t color)
 
 void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
 {
-    char converted[256];
-    int pos = 0;
-    
-    // Convert PlayStation symbols to normal characters that exist in your TTF font
-    while (*text && pos < 255) {
+    int i=x, j=y;
+    SetFontColor(RGBA_COLOR(color, 255), 0);
+    while (*text) {
         switch(*text) {
-            case '\xfa': // circle
-                converted[pos++] = 'O'; // or whatever character you want to represent circle
-                break;
-            case '\xfb': // cross
-                converted[pos++] = 'X'; // or whatever character you want to represent cross
-                break;
-            case '\xfc': // triangle
-                converted[pos++] = '^'; // or whatever character you want to represent triangle
-                break;
-            case '\xfd': // square
-                converted[pos++] = '□'; // or whatever character you want to represent square
-                break;
-            default:
-                converted[pos++] = *text;
-                break;
+            case '\n':
+                i = x;
+                j += PKGI_FONT_HEIGHT;
+                text++;
+                continue;
+            case '\xfa':
+                pkgi_draw_texture_z(tex_buttons.circle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfb':
+                pkgi_draw_texture_z(tex_buttons.cross, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfc':
+                pkgi_draw_texture_z(tex_buttons.triangle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfd':
+                pkgi_draw_texture_z(tex_buttons.square, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
         }
-        text++;
-    }
-    converted[pos] = '\0';
-    
-    pkgi_draw_text_ttf(x, y, z, color, converted);
+        
+        DrawChar(i, j, z, (u8) *text);
+        i += PKGI_FONT_WIDTH;
+        text++; 
+    }    
 }
 
 
 void pkgi_draw_text_ttf(int x, int y, int z, uint32_t color, const char* text)
 {
     Z_ttf = z;
-    // Use smaller increments for better scaling
-    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, text, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH, PKGI_FONT_HEIGHT);
-    display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH, PKGI_FONT_HEIGHT);
+    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, text, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+    display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
 }
 
 int pkgi_text_width_ttf(const char* text)
@@ -1096,14 +1100,17 @@ int pkgi_text_width_ttf(const char* text)
 
 void pkgi_draw_text(int x, int y, uint32_t color, const char* text)
 {
-    // Redirect to TTF version with shadow
-    pkgi_draw_text_ttf(x, y, PKGI_FONT_Z, color, text);
+    SetFontColor(RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0);
+    DrawString((float)x+PKGI_FONT_SHADOW, (float)y+PKGI_FONT_SHADOW, (char *)text);
+
+    SetFontColor(RGBA_COLOR(color, 200), 0);
+    DrawString((float)x, (float)y, (char *)text);
 }
 
 
 int pkgi_text_width(const char* text)
 {
-    return pkgi_text_width_ttf(text);
+    return (strlen(text) * PKGI_FONT_WIDTH) + PKGI_FONT_SHADOW;
 }
 
 int pkgi_text_height(const char* text)
