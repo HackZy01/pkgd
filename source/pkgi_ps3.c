@@ -1059,7 +1059,6 @@ void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
     char converted[256];
     int pos = 0;
     
-    // Convert PlayStation symbols to text characters
     while (*text && pos < 255) {
         switch(*text) {
             case '\n':
@@ -1075,7 +1074,13 @@ void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
                 converted[pos++] = '^';
                 break;
             case '\xfd': // square
-                converted[pos++] = '□';
+                converted[pos++] = '■';  // solid square available in Roboto
+                break;
+            case '•':    // selection dot
+                converted[pos++] = '□';  // use arrow instead
+                break;
+            case '°':    // degree sign
+                converted[pos++] = '>';  // use arrow instead
                 break;
             default:
                 converted[pos++] = *text;
@@ -1084,8 +1089,7 @@ void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
         text++;
     }
     converted[pos] = '\0';
-
-    // Use existing TTF function instead of the blocky font
+    
     Z_ttf = z;
     display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, converted, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
     display_ttf_string(x, y, converted, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
