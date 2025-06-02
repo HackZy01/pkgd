@@ -1,25 +1,28 @@
-# PKGi PS3
+# PKGd for PlayStation 3
 
-[![Downloads][img_downloads]][pkgi_downloads] [![Release][img_latest]][pkgi_latest] [![License][img_license]][pkgi_license]
-[![Build package](https://github.com/bucanero/pkgi-ps3/actions/workflows/build.yml/badge.svg)](https://github.com/bucanero/pkgi-ps3/actions/workflows/build.yml)
+[![Release][img_latest]][pkgi_latest] [![License][img_license]][pkgi_license]
+[![Build package](https://github.com/hackzy01/pkgd/actions/workflows/build.yml/badge.svg)](https://github.com/hackzy01/pkgd/actions/workflows/build.yml)
 
-**PKGi PS3** is a PlayStation 3 port of [pkgi (PSVita)](https://github.com/mmozeiko/pkgi).
+**PKGd** is a fork of [PKGI PS3](https://github.com/bucanero/pkgi-ps3).
 
-The `pkgi-ps3` homebrew app allows to download and install `.pkg` files directly on your PS3.
+PKGd allows you to download and install `.pkg` files directly from your PS3 console.
 
 ![image](https://user-images.githubusercontent.com/1153055/71187586-1acaf400-225e-11ea-9531-b18af20be10d.png)
 
-**Comments, ideas, suggestions?** You can contact [me](https://github.com/bucanero/) on [Twitter](https://twitter.com/dparrino) and on [my website](http://www.bucanero.com.ar/).
+**Comments, ideas, suggestions?** You can open an issue on github.
 
-# Features
+# What sets PKGd apart?!
+* **Actual localization support:** PKGd uses Noto Sans Monospaced for maximium compatibility with foregin characters <br> `eg.: ł, ź, ć and many others (CJK characters are coming soon!)`
+* **Ongoing GUI redesign**: PKGd is going through massive changes to bring comfort to the cold harsh reality of your very lives
 
-* **easy to use:** list available downloads, including searching, filtering, and sorting.
-* **standalone:** no PC required, everything happens directly on the PS3.
-* **automatic downloads:** just choose an item, and it will be downloaded by the app to your HDD (`direct mode`) or queued for background download (`background mode`) using the internal Download Manager.
-* **resumes interrupted downloads:** you can stop a download at any time, switch applications, and come back to resume the download later.
-* **content activation:** the app can generate `.rif` files for downloaded content (system must be activated)
-* **content updates:** the app can check online for available content updates
-* **localization support:** Finnish, French, German, Italian, Polish, Portuguese, Spanish, Turkish
+### Features
+~~* **easy to use:** list available downloads, including searching, filtering, and sorting.~~
+~~* **standalone:** no PC required, everything happens directly on the PS3.~~
+~~* **automatic downloads:** just choose an item, and it will be downloaded by the app to your HDD (`direct mode`) or queued for background download (`background mode`) using the internal Download Manager.~~
+~~* **resumes interrupted downloads:** you can stop a download at any time, switch applications, and come back to resume the download later.~~
+~~* **content activation:** the app can generate `.rif` files for downloaded content (system must be activated)~~
+~~* **content updates:** the app can check online for available content updates~~
+~~* **localization support:** Finnish, French, German, Italian, Polish (oh really?), Portuguese, Spanish, Turkish~~
 
 ### Notes:
 * **queuing** up multiple downloads is only supported when using `background download` mode.
@@ -179,21 +182,20 @@ It will open the context menu. Press ![Triangle](https://github.com/bucanero/pkg
    
    You can use a tool like RIF2RAP to generate a `.rap` from your existing `.rif` files. Then you can use a tool like `hexdump` to get the hex byte string.
 
-2. Where to get `.pkg` links?
+~~2. Where to get `.pkg` links?~~
    
-   You can use [PSDLE][] to find `.pkg` URLs for the games you own. Then either use the original URL, or host the file on your own web server.
+ ~~You can use [PSDLE][] to find `.pkg` URLs for the games you own. Then either use the original URL, or host the file on your own web server.~~ PSDLE has been dead for quite some time now
 
-3. Where to remove interrupted/failed downloads to free up disk space?
+2. Where to remove interrupted/failed downloads to free up disk space?
    
    Check the `/dev_hdd0/tmp/pkgi` folder - each download will be in a separate `.pkg` file by its title id. Simply delete the file and start again.
 
-4. Download speed is too slow!
+3 Download speed is too slow!
    
-   Optimization is still pending. If `direct` download is slow, you can use `background download` mode to download files using the internal PS3 Download Manager.
+   A stable wired ethernet connection is recommended as the PS3's wireless networking is quite dated considering today's standards. Optimization is still pending. If `direct` download is slow, you can use `background download` mode to download files using the internal PS3 download manager.
 
 # Credits
-
-* [Bucanero](http://www.bucanero.com.ar/): Project developer
+* [Bucanero](http://www.bucanero.com.ar/): PKGi PS3 developer
 * [mmozeiko](https://github.com/mmozeiko/): [PS Vita pkgi](https://github.com/mmozeiko/pkgi)
 
 # Building
