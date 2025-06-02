@@ -9,7 +9,7 @@
 #define PKGI_UTF8_DEGREE "\xc2\xb0"  // ° DEGREE SIGN (U+00B0)
 
 #define PKGI_UTF8_O "\xe2\x97\x8b" // ○ (U+25CB)
-#define PKGI_UTF8_X "\xc2\xbb" // » (U+00BB)
+#define PKGI_UTF8_X "\xc3\x97" // × (U+00D7)
 #define PKGI_UTF8_T "\xe2\x96\xb3" // △ (U+25B3)
 #define PKGI_UTF8_S "\xe2\x96\xa1" // □ (U+25A1)
 
@@ -21,7 +21,8 @@
 #define PKGI_UTF8_MB "Mb"
 #define PKGI_UTF8_GB "Gb"
 
-#define PKGI_UTF8_CLEAR "\xc3\x97" // × (U+00D7)
+#define PKGI_UTF8_CLEAR "\xc2\xbb" // » (U+00BB)
+
 
 #define PKGI_UTF8_SORT_ASC  "\xe2\x96\xb2" // ▲ (U+25B2)
 #define PKGI_UTF8_SORT_DESC "\xe2\x96\xbc" // ▼ (U+25BC)
