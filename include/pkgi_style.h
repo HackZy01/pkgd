@@ -56,7 +56,7 @@
 #define PKGI_FONT_SHADOW 2
 
 #define PKGI_MAIN_COLUMN_PADDING    10
-#define PKGI_MAIN_HLINE_EXTRA       2
+#define PKGI_MAIN_HLINE_EXTRA       1
 #define PKGI_MAIN_ROW_PADDING       2
 #define PKGI_MAIN_HLINE_HEIGHT      1
 #define PKGI_MAIN_TEXT_PADDING      5
