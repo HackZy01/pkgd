@@ -56,7 +56,7 @@
 #define PKGI_FONT_SHADOW 2
 
 #define PKGI_MAIN_COLUMN_PADDING    10
-#define PKGI_MAIN_HLINE_EXTRA       1
+#define PKGI_MAIN_HLINE_EXTRA       0
 #define PKGI_MAIN_ROW_PADDING       2
 #define PKGI_MAIN_HLINE_HEIGHT      1
 #define PKGI_MAIN_TEXT_PADDING      5
@@ -79,7 +79,7 @@
 
 #define PKGI_MENU_Z            900
 #define PKGI_MENU_TEXT_Z       800
-#define PKGI_MENU_WIDTH        150
+#define PKGI_MENU_WIDTH        240
 #define PKGI_MENU_HEIGHT       480
 #define PKGI_MENU_LEFT_PADDING 20
 #define PKGI_MENU_TOP_PADDING  40
