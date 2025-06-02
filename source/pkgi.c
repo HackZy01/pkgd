@@ -534,9 +534,9 @@ static void pkgi_do_head(void)
 {
     char title[256];
     pkgi_snprintf(title, sizeof(title), "PKGd %s - %s", PKGI_VERSION, content_type_str(config.content));
-    pkgi_draw_text(PKGI_MAIN_HMARGIN-4, PKGI_MAIN_VMARGIN, PKGI_COLOR_TEXT_HEAD, title);
+    pkgi_draw_text(PKGI_MAIN_HMARGIN-6, PKGI_MAIN_VMARGIN, PKGI_COLOR_TEXT_HEAD, title);
 
-    pkgi_draw_fill_rect(0, font_height+10 + PKGI_MAIN_VMARGIN, VITA_WIDTH, PKGI_MAIN_HLINE_HEIGHT, PKGI_COLOR_HLINE);
+    pkgi_draw_fill_rect(0, font_height+12 + PKGI_MAIN_VMARGIN, VITA_WIDTH, PKGI_MAIN_HLINE_HEIGHT-2, PKGI_COLOR_HLINE);
 
     char battery[256];
     pkgi_snprintf(battery, sizeof(battery), "CPU: %u""\xc2\xb0""C RSX: %u""\xc2\xb0""C", pkgi_get_temperature(0), pkgi_get_temperature(1));
@@ -657,7 +657,7 @@ static void pkgi_update_check_thread(void)
 
     json_object * jobj = json_tokener_parse(buffer);
 
-    if ((value = json_parse(jobj, "name")) == NULL || !pkgi_memequ("PKGi PS3", value, 8) || pkgi_stricmp(PKGI_VERSION, value+10) == 0)
+    if ((value = json_parse(jobj, "name")) == NULL || !pkgi_memequ("PKGd", value, 8) || pkgi_stricmp(PKGI_VERSION, value+10) == 0)
     {
         LOG("no new version available");
         pkgi_thread_exit();
@@ -676,7 +676,7 @@ static void pkgi_update_check_thread(void)
 
     DbItem update_item = {
         .content = "UP0001-NP00PKGI3_00-0000000000000000",
-        .name    = "PKGi PS3 Update",
+        .name    = "PKGd Update",
         .url     = value,
     };
 
