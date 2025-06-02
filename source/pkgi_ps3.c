@@ -1056,45 +1056,51 @@ void pkgi_draw_text_z_ttf(int x, int y, int z, uint32_t color, const char* text)
 
 void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
 {
-    char converted[256];
-    int pos = 0;
-    
-    while (*text && pos < 255) {
+    int i = x, j = y;
+    Z_ttf = z;
+
+    while (*text) {
         switch(*text) {
             case '\n':
-                converted[pos++] = '\n';
-                break;
+                i = x;
+                j += PKGI_FONT_HEIGHT;
+                text++;
+                continue;
             case '\xfa': // circle
-                converted[pos++] = 'O';
-                break;
+                pkgi_draw_texture_z(tex_buttons.circle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
             case '\xfb': // cross
-                converted[pos++] = 'X';
-                break;
+                pkgi_draw_texture_z(tex_buttons.cross, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
             case '\xfc': // triangle
-                converted[pos++] = '^';
-                break;
+                pkgi_draw_texture_z(tex_buttons.triangle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
             case '\xfd': // square
-                converted[pos++] = '■';  // solid square available in Roboto
-                break;
+                pkgi_draw_texture_z(tex_buttons.square, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
             case '•':    // selection dot
-                converted[pos++] = '□';  // use arrow instead
-                break;
             case '°':    // degree sign
-                converted[pos++] = '>';  // use arrow instead
-                break;
             default:
-                converted[pos++] = *text;
+                // Draw shadow first
+                display_ttf_string(i + PKGI_FONT_SHADOW, j + PKGI_FONT_SHADOW, (char[]){*text, '\0'}, 
+                    RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+                // Draw main character
+                display_ttf_string(i, j, (char[]){*text, '\0'}, 
+                    RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+                i += PKGI_FONT_WIDTH;
+                text++;
                 break;
         }
-        text++;
     }
-    converted[pos] = '\0';
-    
-    Z_ttf = z;
-    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, converted, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
-    display_ttf_string(x, y, converted, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
 }
-
 
 void pkgi_draw_text_ttf(int x, int y, int z, uint32_t color, const char* text)
 {
