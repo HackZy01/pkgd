@@ -536,7 +536,7 @@ static void pkgi_do_head(void)
     pkgi_snprintf(title, sizeof(title), "PKGd %s - %s", PKGI_VERSION, content_type_str(config.content));
     pkgi_draw_text(PKGI_MAIN_HMARGIN-4, PKGI_MAIN_VMARGIN, PKGI_COLOR_TEXT_HEAD, title);
 
-    pkgi_draw_fill_rect(0, font_height+6 + PKGI_MAIN_VMARGIN, VITA_WIDTH, PKGI_MAIN_HLINE_HEIGHT, PKGI_COLOR_HLINE);
+    pkgi_draw_fill_rect(0, font_height+10 + PKGI_MAIN_VMARGIN, VITA_WIDTH, PKGI_MAIN_HLINE_HEIGHT, PKGI_COLOR_HLINE);
 
     char battery[256];
     pkgi_snprintf(battery, sizeof(battery), "CPU: %u""\xc2\xb0""C RSX: %u""\xc2\xb0""C", pkgi_get_temperature(0), pkgi_get_temperature(1));
