@@ -43,6 +43,9 @@
 
 #define PKGI_USER_AGENT "Mozilla/5.0 (PLAYSTATION 3; 1.00)"
 
+#define PKGI_FONT_Z 1.0f  // Default Z value for text rendering
+
+
 
 struct pkgi_http
 {
@@ -1100,17 +1103,14 @@ int pkgi_text_width_ttf(const char* text)
 
 void pkgi_draw_text(int x, int y, uint32_t color, const char* text)
 {
-    SetFontColor(RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0);
-    DrawString((float)x+PKGI_FONT_SHADOW, (float)y+PKGI_FONT_SHADOW, (char *)text);
-
-    SetFontColor(RGBA_COLOR(color, 200), 0);
-    DrawString((float)x, (float)y, (char *)text);
+    // Redirect to TTF version with shadow
+    pkgi_draw_text_ttf(x, y, PKGI_FONT_Z, color, text);
 }
 
 
 int pkgi_text_width(const char* text)
 {
-    return (strlen(text) * PKGI_FONT_WIDTH) + PKGI_FONT_SHADOW;
+    return pkgi_text_width_ttf(text);
 }
 
 int pkgi_text_height(const char* text)
