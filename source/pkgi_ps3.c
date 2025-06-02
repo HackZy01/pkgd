@@ -1083,8 +1083,9 @@ void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
 void pkgi_draw_text_ttf(int x, int y, int z, uint32_t color, const char* text)
 {
     Z_ttf = z;
-    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, text, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
-    display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+    // Use smaller increments for better scaling
+    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, text, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH, PKGI_FONT_HEIGHT);
+    display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH, PKGI_FONT_HEIGHT);
 }
 
 int pkgi_text_width_ttf(const char* text)
@@ -1095,11 +1096,10 @@ int pkgi_text_width_ttf(const char* text)
 
 void pkgi_draw_text(int x, int y, uint32_t color, const char* text)
 {
-    Z_ttf = z;
-    // Use smaller increments for better scaling
-    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, text, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH, PKGI_FONT_HEIGHT);
-    display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH, PKGI_FONT_HEIGHT);
+    // Redirect to TTF version with shadow
+    pkgi_draw_text_ttf(x, y, PKGI_FONT_Z, color, text);
 }
+
 
 int pkgi_text_width(const char* text)
 {
