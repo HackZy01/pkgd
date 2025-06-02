@@ -6,28 +6,28 @@
 #define PKGI_COLOR(R, G, B)		(((R)<<16) | ((G)<<8) | (B))
 #define RGBA_COLOR(C, ALPHA)	((C<<8) | ALPHA)
 
+// PlayStation Buttons
+#define PKGI_UTF8_O "\xe2\x97\x8b" // ○ WHITE CIRCLE (U+25CB)
+#define PKGI_UTF8_X "\xc3\x97" // × MULTIPLICATION SIGN (U+00D7)
+#define PKGI_UTF8_T "\xe2\x96\xb3" // △ WHITE UP-POINTING TRIANGLE (U+25B3)
+#define PKGI_UTF8_S "\xe2\x96\xa1" // □ WHITE SQUARE (U+25A1)
 
-#define PKGI_UTF8_O "\xfa" // "\xe2\x97\x8b" // 0x25cb
-#define PKGI_UTF8_X "\xfb" // "\xe2\x95\xb3" // 0x2573
-#define PKGI_UTF8_T "\xfc" // "\xe2\x96\xb3" // 0x25b3
-#define PKGI_UTF8_S "\xfd" // "\xe2\x96\xa1" // 0x25a1
-
-
-#define PKGI_UTF8_INSTALLED "\x04"//"\xe2\x97\x8f" // 0x25cf
-#define PKGI_UTF8_PARTIAL   "\x09"//"\xe2\x97\x8b" // 0x25cb
+// Status Icons
+#define PKGI_UTF8_INSTALLED "\xe2\x97\x8f" // ● BLACK CIRCLE (U+25CF)
+#define PKGI_UTF8_PARTIAL   "\xe2\x97\x8b" // ○ WHITE CIRCLE (U+25CB)
 
 #define PKGI_UTF8_B  "B"
-#define PKGI_UTF8_KB "Kb" // "\xe3\x8e\x85" // 0x3385
-#define PKGI_UTF8_MB "Mb" // "\xe3\x8e\x86" // 0x3386
-#define PKGI_UTF8_GB "Gb" // "\xe3\x8e\x87" // 0x3387
+#define PKGI_UTF8_KB "Kb"
+#define PKGI_UTF8_MB "Mb"
+#define PKGI_UTF8_GB "Gb"
 
-#define PKGI_UTF8_CLEAR "\xaf" // 0x00d7
+#define PKGI_UTF8_CLEAR "\xc3\x97" // × MULTIPLICATION SIGN (U+00D7)
 
-#define PKGI_UTF8_SORT_ASC  "\x1e" //"\xe2\x96\xb2" // 0x25b2
-#define PKGI_UTF8_SORT_DESC "\x1f" //"\xe2\x96\xbc" // 0x25bc
+#define PKGI_UTF8_SORT_ASC  "\xe2\x96\xb2" // ▲ BLACK UP-POINTING TRIANGLE (U+25B2)
+#define PKGI_UTF8_SORT_DESC "\xe2\x96\xbc" // ▼ BLACK DOWN-POINTING TRIANGLE (U+25BC)
 
-#define PKGI_UTF8_CHECK_ON  "\x04"//"\xe2\x97\x8f" // 0x25cf
-#define PKGI_UTF8_CHECK_OFF "\x09"//"\xe2\x97\x8b" // 0x25cb
+#define PKGI_UTF8_CHECK_ON  "\xe2\x97\x8f" // ● BLACK CIRCLE (U+25CF)
+#define PKGI_UTF8_CHECK_OFF "\xe2\x97\x8b" // ○ WHITE CIRCLE (U+25CB)
 
 #define PKGI_COLOR_DIALOG_BACKGROUND    PKGI_COLOR(48, 48, 48)
 #define PKGI_COLOR_MENU_BORDER          PKGI_COLOR(80, 80, 255)
@@ -63,7 +63,7 @@
 #define PKGI_MAIN_SCROLL_WIDTH      2
 #define PKGI_MAIN_SCROLL_PADDING    2
 #define PKGI_MAIN_SCROLL_MIN_HEIGHT 50
-#define PKGI_MAIN_HMARGIN           25
+#define PKGI_MAIN_HMARGIN           12
 #define PKGI_MAIN_VMARGIN           20
 
 #define PKGI_DIALOG_TEXT_Z  800
