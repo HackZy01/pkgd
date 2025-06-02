@@ -270,9 +270,9 @@ static void pkgi_do_main(pkgi_input* input)
         if (input->active & PKGI_BUTTON_SELECT)
         {
             input->pressed &= ~PKGI_BUTTON_SELECT;
-            pkgi_dialog_message("\xE2\x98\x85  PKGi PS3 v" PKGI_VERSION "  \xE2\x98\x85",
-                                "             PlayStation 3 version by Bucanero\n\n"
-                                "           https://github.com/bucanero/pkgi-ps3/");
+            pkgi_dialog_message("\xE2\x98\x85  PKGd " PKGI_VERSION "  \xE2\x98\x85",
+                                "             PKGi-PS3 fork by hackzy01\n\n"
+                                "           https://github.com/hackzy01/pkgd/");
         }
 
         if (input->active & PKGI_BUTTON_L2)
