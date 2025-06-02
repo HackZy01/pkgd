@@ -1056,39 +1056,39 @@ void pkgi_draw_text_z_ttf(int x, int y, int z, uint32_t color, const char* text)
 
 void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
 {
-    int i=x, j=y;
-    SetFontColor(RGBA_COLOR(color, 255), 0);
-    while (*text) {
+    char converted[256];
+    int pos = 0;
+    
+    // Convert PlayStation symbols to text characters
+    while (*text && pos < 255) {
         switch(*text) {
             case '\n':
-                i = x;
-                j += PKGI_FONT_HEIGHT;
-                text++;
-                continue;
-            case '\xfa':
-                pkgi_draw_texture_z(tex_buttons.circle, i, j, z, 0.5f);
-                i += PKGI_FONT_WIDTH;
-                text++;
-                continue;
-            case '\xfb':
-                pkgi_draw_texture_z(tex_buttons.cross, i, j, z, 0.5f);
-                i += PKGI_FONT_WIDTH;
-                text++;
-                continue;
-            case '\xfc':
-                pkgi_draw_texture_z(tex_buttons.triangle, i, j, z, 0.5f);
-                i += PKGI_FONT_WIDTH;
-                text++;
-                continue;
-            case '\xfd':
-                pkgi_draw_texture_z(tex_buttons.square, i, j, z, 0.5f);
-                i += PKGI_FONT_WIDTH;
-                text++;
-                continue;
+                converted[pos++] = '\n';
+                break;
+            case '\xfa': // circle
+                converted[pos++] = 'O';
+                break;
+            case '\xfb': // cross
+                converted[pos++] = 'X';
+                break;
+            case '\xfc': // triangle
+                converted[pos++] = '^';
+                break;
+            case '\xfd': // square
+                converted[pos++] = '□';
+                break;
+            default:
+                converted[pos++] = *text;
+                break;
         }
-        
-    pkgi_draw_text_z_ttf(x, y, z, color);
-    }    
+        text++;
+    }
+    converted[pos] = '\0';
+
+    // Use existing TTF function instead of the blocky font
+    Z_ttf = z;
+    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, converted, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+    display_ttf_string(x, y, converted, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
 }
 
 
