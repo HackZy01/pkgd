@@ -1092,6 +1092,38 @@ void pkgi_draw_text_ttf(int x, int y, int z, uint32_t color, const char* text)
     display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
 }
 
+void pkgi_draw_text_visible(int x, int y, uint32_t color, const char* text)
+{
+    if (!text) return;
+
+    int z = PKGI_FONT_Z;
+
+    display_ttf_string(
+        x + PKGI_FONT_SHADOW,
+        y + PKGI_FONT_SHADOW,
+        text,
+        RGBA_COLOR(0, 0, 0, 128),
+        0,
+        PKGI_FONT_WIDTH + 6,
+        PKGI_FONT_HEIGHT + 2
+    );
+
+    display_ttf_string(
+        x,
+        y,
+        text,
+        RGBA_COLOR(
+            (color >> 16) & 0xFF,
+            (color >> 8) & 0xFF,
+            color & 0xFF,
+            255
+        ),
+        0,
+        PKGI_FONT_WIDTH + 6,
+        PKGI_FONT_HEIGHT + 2
+    );
+}
+
 int pkgi_text_width_ttf(const char* text)
 {
     return (display_ttf_string(0, 0, text, 0, 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2));
@@ -1106,7 +1138,7 @@ void pkgi_draw_text(int x, int y, uint32_t color, const char* text)
 
 int pkgi_text_width(const char* text)
 {
-    return pkgi_text_width_ttf(text);
+    return (strlen(text) * PKGI_FONT_WIDTH) + PKGI_FONT_SHADOW;
 }
 
 int pkgi_text_height(const char* text)
