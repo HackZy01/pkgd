@@ -404,7 +404,7 @@ static void pkgi_do_main(pkgi_input* input)
         int sizew = pkgi_text_width(size_str);
 
         pkgi_clip_set(0, y, VITA_WIDTH, line_height);
-        pkgi_draw_text_z(col_titleid, y, PKGI_FONT_Z, color, titleid);
+		pkgi_draw_text_ttf(col_titleid, y, PKGI_FONT_Z, color, titleid);
         const char* region;
         switch (pkgi_get_region(item->content))
         {
@@ -412,7 +412,7 @@ static void pkgi_do_main(pkgi_input* input)
         case RegionEUR: region = "EUR"; break;
         case RegionJPN: region = "JPN"; break;
         case RegionUSA: region = "USA"; break;
-        default: region = "???"; break;
+        default: region = "XXX"; break;
         }
         pkgi_draw_text_z(col_region, y, PKGI_FONT_Z, color, region);
         if (item->presence == PresenceIncomplete)
