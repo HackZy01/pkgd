@@ -604,7 +604,7 @@ void load_ttf_fonts()
 	
 	TTFUnloadFont();
 	TTFLoadFont(0, "/dev_hdd0/game/NP00PKGI3/USRDIR/NotoSansMono-Regular.ttf", NULL, 0);
-	TTFLoadFont(1, "/dev_flash/data/font/SCE-PS3-DH-R-CGB.TTF", NULL, 0); 
+	TTFLoadFont(1, "/dev_flash/data/font/SCE-PS3-DH-R-CGB.TTF", NULL, 0);
 	TTFLoadFont(2, "/dev_flash/data/font/SCE-PS3-SR-R-JPN.TTF", NULL, 0);
 	TTFLoadFont(3, "/dev_flash/data/font/SCE-PS3-YG-R-KOR.TTF", NULL, 0);
 	
@@ -1045,54 +1045,43 @@ void pkgi_draw_rect(int x, int y, int w, int h, uint32_t color)
 	ya2d_drawRect(x, y, w, h, RGBA_COLOR(color, 255));
 }
 
-void pkgi_draw_text_z_ttf(int x, int y, int z, uint32_t color, const char* text)
-{
-    Z_ttf = z;
-    // Draw shadow
-    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, text, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
-    // Draw text
-    display_ttf_string(x, y, text, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
-}
-
 void pkgi_draw_text_z(int x, int y, int z, uint32_t color, const char* text)
 {
-    char converted[256];
-    int pos = 0;
-    
-    while (*text && pos < 255) {
+    int i=x, j=y;
+    SetFontColor(RGBA_COLOR(color, 255), 0);
+    while (*text) {
         switch(*text) {
             case '\n':
-                converted[pos++] = '\n';
-                break;
-            case '\xfa': // circle
-                converted[pos++] = 'O';
-                break;
-            case '\xfb': // cross
-                converted[pos++] = 'X';
-                break;
-            case '\xfc': // triangle
-                converted[pos++] = '^';
-                break;
-            case '\xfd': // square
-                converted[pos++] = '■';  // solid square available in Roboto
-                break;
-            case '•':    // selection dot
-                converted[pos++] = '□';  // use arrow instead
-                break;
-            case '°':    // degree sign
-                converted[pos++] = '>';  // use arrow instead
-                break;
-            default:
-                converted[pos++] = *text;
-                break;
+                i = x;
+                j += PKGI_FONT_HEIGHT;
+                text++;
+                continue;
+            case '\xfa':
+                pkgi_draw_texture_z(tex_buttons.circle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfb':
+                pkgi_draw_texture_z(tex_buttons.cross, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfc':
+                pkgi_draw_texture_z(tex_buttons.triangle, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
+            case '\xfd':
+                pkgi_draw_texture_z(tex_buttons.square, i, j, z, 0.5f);
+                i += PKGI_FONT_WIDTH;
+                text++;
+                continue;
         }
-        text++;
-    }
-    converted[pos] = '\0';
-    
-    Z_ttf = z;
-    display_ttf_string(x+PKGI_FONT_SHADOW, y+PKGI_FONT_SHADOW, converted, RGBA_COLOR(PKGI_COLOR_TEXT_SHADOW, 128), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
-    display_ttf_string(x, y, converted, RGBA_COLOR(color, 255), 0, PKGI_FONT_WIDTH+6, PKGI_FONT_HEIGHT+2);
+        
+        DrawChar(i, j, z, (u8) *text);
+        i += PKGI_FONT_WIDTH;
+        text++; 
+    }    
 }
 
 
@@ -1111,7 +1100,7 @@ int pkgi_text_width_ttf(const char* text)
 
 void pkgi_draw_text(int x, int y, uint32_t color, const char* text)
 {
-    pkgi_draw_text_ttf(x, y, PKGI_FONT_Z, color, text);
+    pkgi_draw_text_ttf(x, y, 0, color, text);
 }
 
 
