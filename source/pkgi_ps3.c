@@ -1106,7 +1106,7 @@ void pkgi_draw_text(int x, int y, uint32_t color, const char* text)
 
 int pkgi_text_width(const char* text)
 {
-    return (strlen(text) * PKGI_FONT_WIDTH) + PKGI_FONT_SHADOW;
+    return pkgi_text_width_ttf(text);
 }
 
 int pkgi_text_height(const char* text)
