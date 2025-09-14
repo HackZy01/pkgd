@@ -404,7 +404,7 @@ static void pkgi_do_main(pkgi_input* input)
         int sizew = pkgi_text_width(size_str);
 
         pkgi_clip_set(0, y, VITA_WIDTH, line_height);
-		pkgi_draw_text_visible(col_titleid, y, PKGI_FONT_Z, color, titleid);
+        pkgi_draw_text(col_titleid, y, color, titleid);
         const char* region;
         switch (pkgi_get_region(item->content))
         {
@@ -412,22 +412,18 @@ static void pkgi_do_main(pkgi_input* input)
         case RegionEUR: region = "EUR"; break;
         case RegionJPN: region = "JPN"; break;
         case RegionUSA: region = "USA"; break;
-        default: region = "XXX"; break;
+        default: region = "---"; break;
         }
-	pkgi_draw_text_ttf(col_region, y, PKGI_FONT_Z, color, region);
-	if (item->presence == PresenceIncomplete)
-	{       
-		pkgi_draw_text_ttf(col_installed, y, PKGI_FONT_Z, color, PKGI_UTF8_PARTIAL);
-	}
-	else if (item->presence == PresenceInstalled)
-	{
-		pkgi_draw_text_ttf(col_installed, y, PKGI_FONT_Z, color, PKGI_UTF8_INSTALLED);
-	}
+        pkgi_draw_text(col_region, y, color, region);
+        if (item->presence == PresenceIncomplete)
+        {
+            pkgi_draw_text(col_installed, y, color, PKGI_UTF8_PARTIAL);
+        }
+        else if (item->presence == PresenceInstalled)
+        {
+            pkgi_draw_text(col_installed, y, color, PKGI_UTF8_INSTALLED);
+        }
         pkgi_draw_text(VITA_WIDTH - (PKGI_MAIN_SCROLL_WIDTH + PKGI_MAIN_SCROLL_PADDING + PKGI_MAIN_HMARGIN + sizew), y, color, size_str);
-        pkgi_clip_remove();
-
-        pkgi_clip_set(col_name, y, VITA_WIDTH - PKGI_MAIN_SCROLL_WIDTH - PKGI_MAIN_SCROLL_PADDING - PKGI_MAIN_COLUMN_PADDING - sizew - col_name, line_height);
-        pkgi_draw_text_ttf(0, 0, PKGI_FONT_Z, color, item->name);
         pkgi_clip_remove();
 
         y += font_height + PKGI_MAIN_ROW_PADDING;
